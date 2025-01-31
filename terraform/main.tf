@@ -52,6 +52,6 @@ module "aks_cluster" {
   vm_size             = var.vm_size
   subnet_id           = module.vpc_subnet.private_subnet_1_id
   #   bcp_id              = module.load_balancer.bcp_id
-  load_balancer_ip = module.load_balancer.load_balancer_id
+  load_balancer_ip = module.load_balancer.load_balancer_ip
 }
 
