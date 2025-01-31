@@ -13,7 +13,7 @@ resource "azurerm_lb" "load_balancer" {
   frontend_ip_configuration {
     name                 = "loadbalancer-fip"
     public_ip_address_id = azurerm_public_ip.lb_public_ip.id # azurerm_lb_backend_address_pool.identity.id #module.azurerm_public_ip.id #
-    subnet_id            = var.public_subnet_id
+    # subnet_id            = var.public_subnet_id
   }
 }
 

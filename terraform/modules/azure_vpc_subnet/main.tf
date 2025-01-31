@@ -28,7 +28,7 @@ resource "azurerm_subnet" "public_subnet_2" {
   name                 = var.public_subnet_2_name
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = var.public_subnet_1_prefixes
+  address_prefixes     = var.public_subnet_2_prefixes
 }
 
 resource "azurerm_subnet" "private_subnet_2" {
@@ -36,6 +36,6 @@ resource "azurerm_subnet" "private_subnet_2" {
   name                 = var.private_subnet_2_name
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = var.private_subnet_1_prefixes
+  address_prefixes     = var.private_subnet_2_prefixes
   service_endpoints    = var.private_subnet_service_endpoints
 }
