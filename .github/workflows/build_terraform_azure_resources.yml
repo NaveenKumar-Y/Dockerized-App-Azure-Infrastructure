@@ -28,10 +28,12 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    # Log in to Terraform Cloud
-    # - name: Terraform Login
-    #   run: |
-    #     echo ${{ secrets.TFC_TOKEN }} | terraform login
+
+    - name: Set up Azure CLI
+      uses: azure/setup-azurecli@v1
+      with:
+        azcliversion: 'latest'
+
 
     # Initialize Terraform
     - name: Initialize Terraform
