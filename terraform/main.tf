@@ -1,8 +1,8 @@
 provider "azurerm" {
   subscription_id = var.subscription_id
-  tenant_id = var.tenant_id
-  client_id = var.client_id
-  client_secret = var.client_secret
+  tenant_id       = var.tenant_id
+  client_id       = var.client_id
+  client_secret   = var.client_secret
   features {
   }
 }
@@ -13,6 +13,7 @@ resource "azurerm_resource_group" "rg" {
 }
 
 module "vpc_subnet" {
+  depends_on                       = [azurerm_resource_group.rg]
   source                           = "./modules/azure_vpc_subnet"
   vnet_name                        = var.vnet_name
   location                         = var.location
@@ -26,15 +27,17 @@ module "vpc_subnet" {
 }
 
 module "load_balancer" {
+  depends_on          = [azurerm_resource_group.rg]
   source              = "./modules/azure_load_balancer"
   load_balancer_name  = var.load_balancer_name
   location            = var.location
   resource_group_name = var.resource_group_name
   # public_ip_id        = module.load_balancer
-  public_subnet_id  = module.vpc_subnet.public_subnet_1_id
+  public_subnet_id = module.vpc_subnet.public_subnet_1_id
 }
 
 module "aks_cluster" {
+  depends_on          = [azurerm_resource_group.rg]
   source              = "./modules/azure_aks_cluster"
   aks_cluster_name    = var.aks_cluster_name
   location            = var.location

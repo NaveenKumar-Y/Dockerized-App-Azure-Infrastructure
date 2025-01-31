@@ -20,6 +20,7 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
 
 
 resource "kubernetes_deployment" "container_deployment" {
+  depends_on = [azurerm_kubernetes_cluster.aks_cluster]
   metadata {
     name      = "app-container-deployment"
     namespace = "default"
@@ -52,6 +53,7 @@ resource "kubernetes_deployment" "container_deployment" {
 }
 
 resource "kubernetes_service" "container_service" {
+  depends_on = [kubernetes_deployment.container_deployment]
   metadata {
     name      = "app-container-service"
     namespace = "default"
