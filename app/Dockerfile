@@ -13,7 +13,7 @@ RUN pip install flask
 
 # Set permissions & switch to non-root user user
 RUN chown -R appuser:appuser /app \
-    chmod +x /app/*.py
+    && chmod +x /app/*.py
 USER appuser
 
 # Expose port and run the application when container is up.
