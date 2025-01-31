@@ -40,5 +40,4 @@ variable "load_balancer_ip" {
 }
 
 variable "kubernetes_version" {
-  default = "1.21.2"
 }

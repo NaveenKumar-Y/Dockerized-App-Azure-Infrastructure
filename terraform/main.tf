@@ -19,6 +19,10 @@ module "vpc_subnet" {
   location                         = var.location
   resource_group_name              = var.resource_group_name
   address_space                    = var.address_space
+  public_subnet_1_name             = var.public_subnet_1_name
+  public_subnet_2_name             = var.public_subnet_2_name
+  private_subnet_1_name            = var.private_subnet_1_name
+  private_subnet_2_name            = var.private_subnet_2_name
   public_subnet_1_prefixes         = var.public_subnet_1_prefixes
   public_subnet_2_prefixes         = var.public_subnet_2_prefixes
   private_subnet_1_prefixes        = var.private_subnet_1_prefixes
@@ -42,6 +46,7 @@ module "aks_cluster" {
   aks_cluster_name    = var.aks_cluster_name
   location            = var.location
   resource_group_name = var.resource_group_name
+  kubernetes_version  = var.kubernetes_version
   dns_prefix          = var.dns_prefix
   node_count          = var.node_count
   vm_size             = var.vm_size

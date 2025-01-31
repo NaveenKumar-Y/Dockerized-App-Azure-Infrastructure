@@ -21,27 +21,23 @@ variable "address_space" {
 variable "public_subnet_1_name" {
   description = "Name of the public subnet"
   type        = string
-  default     = "public_subnet_1"
 }
 
 variable "public_subnet_2_name" {
   description = "Name of the public subnet"
   type        = string
-  default     = "public_subnet_2"
 
 }
 
 variable "private_subnet_1_name" {
   description = "Name of the private subnet"
   type        = string
-  default     = "private_subnet_1"
 
 }
 
 variable "private_subnet_2_name" {
   description = "Name of the private subnet"
   type        = string
-  default     = "private_subnet_2"
 
 }
 

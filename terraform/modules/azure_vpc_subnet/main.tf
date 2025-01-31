@@ -25,7 +25,7 @@ resource "azurerm_subnet" "private_subnet_1" {
 
 resource "azurerm_subnet" "public_subnet_2" {
   depends_on           = [azurerm_virtual_network.vnet]
-  name                 = "public-subnet-2"
+  name                 = var.public_subnet_2_name
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = var.public_subnet_1_prefixes
@@ -33,7 +33,7 @@ resource "azurerm_subnet" "public_subnet_2" {
 
 resource "azurerm_subnet" "private_subnet_2" {
   depends_on           = [azurerm_virtual_network.vnet]
-  name                 = "private-subnet-2"
+  name                 = var.private_subnet_2_name
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = var.private_subnet_1_prefixes
