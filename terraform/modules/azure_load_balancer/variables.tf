@@ -13,6 +13,6 @@ variable "resource_group_name" {
   type        = string
 }
 
-variable "public_ip_id" {
+variable "public_subnet_id" {
   description = "public subnet id"
 }

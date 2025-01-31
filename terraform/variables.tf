@@ -93,8 +93,8 @@ variable "load_balancer_name" {
   type        = string
 }
 
-# variable "public_ip_id"{k
-#     description = "public subnet id"
+# variable "public_subnet_id" {
+#   description = "public subnet"
 # }
 
 variable "kubernetes_version" {

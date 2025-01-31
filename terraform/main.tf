@@ -25,7 +25,8 @@ module "load_balancer" {
   load_balancer_name  = var.load_balancer_name
   location            = var.location
   resource_group_name = var.resource_group_name
-  public_ip_id        = module.vpc_subnet.public_subnet_1_id
+  # public_ip_id        = module.load_balancer
+  public_subnet_id  = module.vpc_subnet.public_subnet_1_id
 }
 
 module "aks_cluster" {
