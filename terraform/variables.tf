@@ -41,22 +41,22 @@ variable "private_subnet_2_prefixes" {
 
 variable "public_subnet_1_name" {
   description = "Name of the public subnet"
-  type        = list(string)
+  type        = string
 }
 
 variable "public_subnet_2_name" {
   description = "Name of the public subnet"
-  type        = list(string)
+  type        = string
 }
 
 variable "private_subnet_1_name" {
   description = "Name of the private subnet"
-  type        = list(string)
+  type        = string
 }
 
 variable "private_subnet_2_name" {
   description = "Name of the private subnet"
-  type        = list(string)
+  type        = string
 }
 
 variable "private_subnet_service_endpoints" {
@@ -93,6 +93,10 @@ variable "load_balancer_name" {
   type        = string
 }
 
-variable "public_ip_id"{
-    description = "public subnet id"
+# variable "public_ip_id"{k
+#     description = "public subnet id"
+# }
+
+variable "kubernetes_version" {
+    default = "1.21.2"
 }

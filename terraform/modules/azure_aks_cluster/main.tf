@@ -3,7 +3,7 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
   location            = var.location
   resource_group_name = var.resource_group_name
   dns_prefix          = var.dns_prefix
-  kubernetes_version  = "1.21.2"
+  kubernetes_version  = var.kubernetes_version
 
   default_node_pool {
     name       = "default-nodepool"
@@ -16,9 +16,6 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
     type = "SystemAssigned"
   }
 
-  private_cluster {
-    enabled = true
-  }
 }
 
 
@@ -45,7 +42,7 @@ resource "kubernetes_deployment" "container_deployment" {
         container {
           name  = "app-container"
           image = "naveenykumar/simpletimeservice:latest"  
-          ports {
+          port {
             container_port = 18630
           }
         }
@@ -64,13 +61,14 @@ resource "kubernetes_service" "container_service" {
     selector = {
       app = "app-container"
     }
-    ports {
+    port {
       port        = 18630
       target_port = 18630
       protocol    = "TCP"
     }
     type = "LoadBalancer"  
-    load_balancer_backend_address_pool_id = var.bcp_id
+    # load_balancer_backend_address_pool_id = var.bcp_id
+    load_balancer_ip = var.load_balancer_ip
   }
 }
 

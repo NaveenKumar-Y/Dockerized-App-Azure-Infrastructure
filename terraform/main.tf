@@ -1,5 +1,7 @@
 provider "azurerm" {
-  features {}
+
+  features {
+  }
 }
 
 module "vpc_subnet" {
@@ -15,6 +17,14 @@ module "vpc_subnet" {
   private_subnet_service_endpoints = var.private_subnet_service_endpoints
 }
 
+module "load_balancer" {
+  source               = "./modules/azure_load_balancer"
+  load_balancer_name   = var.load_balancer_name
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  public_ip_id        = module.vpc_subnet.public_subnet_1_id
+}
+
 module "aks_cluster" {
   source               = "./modules/azure_aks_cluster"
   aks_cluster_name     = var.aks_cluster_name
@@ -23,14 +33,8 @@ module "aks_cluster" {
   dns_prefix          = var.dns_prefix
   node_count          = var.node_count
   vm_size             = var.vm_size
-  subnet_id           = module.azure_vpc_subnet.private_subnet_1_id
-  bcp_id              = module.azure_load_balancer.bcp_id
+  subnet_id           = module.vpc_subnet.private_subnet_1_id
+#   bcp_id              = module.load_balancer.bcp_id
+  load_balancer_ip    = module.load_balancer.load_balancer_id
 }
 
-module "load_balancer" {
-  source               = "./modules/azure_load_balancer"
-  load_balancer_name   = var.load_balancer_name
-  location            = var.location
-  resource_group_name = var.resource_group_name
-  public_ip_id        = module.azure_vpc_subnet.public_subnet_1_id
-}

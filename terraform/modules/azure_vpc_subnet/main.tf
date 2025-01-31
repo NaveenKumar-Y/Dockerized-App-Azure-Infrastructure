@@ -1,3 +1,7 @@
+resource "azurerm_resource_group" "example" {
+  name     = var.resource_group_name
+  location = var.location
+}
 resource "azurerm_virtual_network" "vnet" {
   name                = var.vnet_name
   location            = var.location
@@ -22,7 +26,7 @@ resource "azurerm_subnet" "private_subnet_1" {
 
 resource "azurerm_subnet" "public_subnet_2" {
   name                 = "public-subnet-2"
-  resource_group_name  = var.var.public_subnet_2_name
+  resource_group_name  = var.public_subnet_2_name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = var.public_subnet_1_prefixes
 }
