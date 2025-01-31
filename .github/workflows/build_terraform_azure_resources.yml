@@ -14,29 +14,13 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # Set up Terraform
+    # Set up Terraform and Login into Terraform Cloud
     - name: Set up Terraform and login
       uses: hashicorp/setup-terraform@v1
       with:
         cli_config_credentials_hostname : "app.terraform.io"
         cli_config_credentials_token : ${{ secrets.TFC_TOKEN }}
         terraform_version: 1.10.5
-
-    # Log in to Azure using Service Principal
-    # - name: Log in to Azure
-    #   run : |
-    #     az login --service-principal -u ${{ secrets.SPN_CLIENT_ID }} -p ${{ secrets.SPN_CLIENT_SECRET }} --tenant ${{ secrets.SPN_TENANT_ID }} 
-    #     az account set --subscription ${{ secrets.SUBSCRIPTION_ID }}
-    #   uses: azure/login@v1
-    #   with:
-    #     creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-
-    # - name: Set up Azure CLI
-    #   uses: azure/setup-azure-cli@v1
-    #   with:
-    #     azcliversion: 'latest'
-
 
     # Initialize Terraform
     - name: Initialize Terraform
