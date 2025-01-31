@@ -18,7 +18,7 @@ private_subnet_service_endpoints = ["Microsoft.Storage"]
 
 load_balancer_name = "app-lb-public"
 
-kubernetes_version = "1.21.2"
+kubernetes_version = "1.29.2"
 aks_cluster_name   = "naveen-aks-cluster"
 dns_prefix         = "aks-dns"
 node_count         = 1
