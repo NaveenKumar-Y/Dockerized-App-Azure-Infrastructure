@@ -4,6 +4,6 @@ output "load_balancer_id" {
 }
 
 output "bcp_id" {
-    description = "backend address pool id"
-    value       = azurerm_lb_backend_address_pool.backend_pool.id
+  description = "backend address pool id"
+  value       = azurerm_lb_backend_address_pool.backend_pool.id
 }

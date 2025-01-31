@@ -28,14 +28,17 @@ jobs:
 
     # Initialize Terraform
     - name: Initialize Terraform
+      working-directory : "./terraform"
       run: terraform init
 
     # Validate Terraform configuration
     - name: Validate Terraform configuration
+      working-directory : "./terraform"
       run: terraform validate
 
     # Plan the Terraform deployment
     - name: Plan Terraform deployment
+      working-directory : "./terraform"
       run: terraform plan -var-file="values.tfvars"
 
     # Apply Terraform configuration

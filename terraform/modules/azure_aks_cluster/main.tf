@@ -6,9 +6,9 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
   kubernetes_version  = var.kubernetes_version
 
   default_node_pool {
-    name       = "default-nodepool"
-    node_count = var.node_count
-    vm_size    = var.vm_size
+    name           = "default-nodepool"
+    node_count     = var.node_count
+    vm_size        = var.vm_size
     vnet_subnet_id = var.subnet_id
   }
 
@@ -41,7 +41,7 @@ resource "kubernetes_deployment" "container_deployment" {
       spec {
         container {
           name  = "app-container"
-          image = "naveenykumar/simpletimeservice:latest"  
+          image = "naveenykumar/simpletimeservice:latest"
           port {
             container_port = 18630
           }
@@ -66,7 +66,7 @@ resource "kubernetes_service" "container_service" {
       target_port = 18630
       protocol    = "TCP"
     }
-    type = "LoadBalancer"  
+    type = "LoadBalancer"
     # load_balancer_backend_address_pool_id = var.bcp_id
     load_balancer_ip = var.load_balancer_ip
   }

@@ -98,5 +98,5 @@ variable "load_balancer_name" {
 # }
 
 variable "kubernetes_version" {
-    default = "1.21.2"
+  default = "1.21.2"
 }

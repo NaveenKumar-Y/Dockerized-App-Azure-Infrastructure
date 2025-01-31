@@ -36,9 +36,9 @@ variable "subnet_id" {
 # variable "bcp_id" {}
 
 variable "load_balancer_ip" {
-    description = " LoadBalancer will get created with the IP specified in this field"
+  description = " LoadBalancer will get created with the IP specified in this field"
 }
 
 variable "kubernetes_version" {
-    default = "1.21.2"
+  default = "1.21.2"
 }
