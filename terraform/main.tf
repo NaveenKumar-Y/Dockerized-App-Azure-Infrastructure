@@ -7,6 +7,13 @@ provider "azurerm" {
   }
 }
 
+provider "kubernetes" {
+  host                   = module.aks_cluster.kube_config[0].host
+  client_certificate     = base64decode(module.aks_cluster.kube_config[0].client_certificate)
+  client_key             = base64decode(module.aks_cluster.kube_config[0].client_key)
+  cluster_ca_certificate = base64decode(module.aks_cluster.kube_config[0].cluster_ca_certificate)
+}
+
 resource "azurerm_resource_group" "rg" {
   name     = var.resource_group_name
   location = var.location
@@ -54,4 +61,3 @@ module "aks_cluster" {
   #   bcp_id              = module.load_balancer.bcp_id
   load_balancer_ip = module.load_balancer.load_balancer_ip
 }
-

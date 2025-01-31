@@ -49,7 +49,7 @@ resource "kubernetes_deployment" "container_deployment" {
       spec {
         container {
           name  = "app-container"
-          image = "naveenykumar/simpletimeservice:latest"
+          image = "nginx" #"naveenykumar/simpletimeservice:latest"
           port {
             container_port = 18630
           }
