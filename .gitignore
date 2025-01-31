@@ -1,0 +1,38 @@
+# Terraform files
+*.tfstate
+*.tfstate.backup
+.terraform/
+.terraform.lock.hcl
+
+# Terraform variables and secrets (DO NOT COMMIT)
+terraform.tfvars
+*.tfvars.json
+terraform.tfvars.backup
+
+# Sensitive credential files
+*.pem
+*.pfx
+*.key
+*.crt
+*.cer
+*.jks
+
+# Ignore IDE and editor-specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+
+# Logs and system files
+.DS_Store
+Thumbs.db
+*.log
+
+# Ignore temporary files
+*.tmp
+*.cache
+*.out
+
+# Ignore Terraform Plan Output (if using)
+terraform.plan
