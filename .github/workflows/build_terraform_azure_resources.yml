@@ -38,5 +38,5 @@ jobs:
       run: terraform plan -var-file="values.tfvars"
 
     # Apply Terraform configuration
-    # - name: Apply Terraform deployment
-    #   run: terraform apply -auto-approve -var-file="values.tfvars"
+    - name: Apply Terraform deployment
+      run: terraform apply -auto-approve -var-file="values.tfvars"
