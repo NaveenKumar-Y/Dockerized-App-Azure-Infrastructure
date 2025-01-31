@@ -39,4 +39,5 @@ jobs:
 
     # Apply Terraform configuration
     - name: Apply Terraform deployment
+      working-directory : "./terraform"
       run: terraform apply -auto-approve -var-file="values.tfvars"
