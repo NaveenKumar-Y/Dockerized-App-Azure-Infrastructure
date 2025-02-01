@@ -28,7 +28,7 @@ variable "vm_size" {
   type        = string
 }
 
-variable "subnet_id" {
+variable "private_subnet_id" {
   description = "ID of the subnet to associate with the AKS cluster"
   type        = string
 }

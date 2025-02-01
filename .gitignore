@@ -22,6 +22,7 @@ terraform.tfvars.backup
 *.swp
 *.swo
 *.bak
+*.bk
 
 # Logs and system files
 .DS_Store

@@ -47,5 +47,5 @@ module "aks_cluster" {
   dns_prefix                   = var.dns_prefix
   node_count                   = var.node_count
   vm_size                      = var.vm_size
-  subnet_id                    = module.vpc_subnet.private_subnet_1_id
+  private_subnet_id            = module.vpc_subnet.private_subnet_1_id
 }
