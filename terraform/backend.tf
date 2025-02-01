@@ -1,10 +1,10 @@
-terraform {
-  cloud {
+# terraform {
+#   cloud {
 
-    organization = "Naveen_org"
+#     organization = "Naveen_org"
 
-    workspaces {
-      name = "azure-app-dev-eastus2"
-    }
-  }
-}
+#     workspaces {
+#       name = "<workspace_name>"
+#     }
+#   }
+# }
