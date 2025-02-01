@@ -308,7 +308,7 @@ Automation via GitHub Actions & Terraform Cloud (TFC) (Optional)
 4.  Click **New repository secret** and add:
     -   **`TFC_TOKEN`** → TFC access token
 ### **Step 2: Configure Workspace**
-- Store Azure credentials (client_id, client_secret, subscription_id, tenant_id) as **TFC Secret Variables** 
+- Store Azure credentials (client_id, client_secret, subscription_id, tenant_id) as **TFC Secret Variables**
 - Uncomment [`provider-variables.tf`](/terraform/provider-variables.tf) file.
 - Uncomment and update the [`backend.tf`](./terraform/backend.tf) file with your **workspace name**.
 
