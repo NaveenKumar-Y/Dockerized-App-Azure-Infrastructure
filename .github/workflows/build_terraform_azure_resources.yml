@@ -35,9 +35,9 @@ jobs:
     # Plan the Terraform deployment
     - name: Plan Terraform deployment
       working-directory : "./terraform"
-      run: terraform plan -var-file="values.tfvars"
+      run: terraform plan 
 
     # Apply Terraform configuration
     - name: Apply Terraform deployment
       working-directory : "./terraform"
-      run: terraform apply -auto-approve -var-file="values.tfvars"
+      run: terraform apply -auto-approve
