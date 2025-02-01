@@ -200,7 +200,7 @@ cd particle41_assessment/terraform
 
 ### 2. Set Up Variables and credentials
 
-Customize the [`terraform.tfvars`](/terraform/terraform.tfvars) file with your values or use the default values:
+Use default values or customize the [`terraform.tfvars`](/terraform/terraform.tfvars) file with your values:
 
 ```
 location            = "East US"

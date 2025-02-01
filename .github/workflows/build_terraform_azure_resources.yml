@@ -25,21 +25,21 @@ jobs:
         terraform_version: 1.10.5
 
     # Initialize Terraform
-    # - name: Initialize Terraform
-    #   working-directory : "./terraform"
-    #   run: terraform init
+    - name: Initialize Terraform
+      working-directory : "./terraform"
+      run: terraform init
 
-    # # Validate Terraform configuration
-    # - name: Validate Terraform configuration
-    #   working-directory : "./terraform"
-    #   run: terraform validate
+    # Validate Terraform configuration
+    - name: Validate Terraform configuration
+      working-directory : "./terraform"
+      run: terraform validate
 
-    # # Plan the Terraform deployment
-    # - name: Plan Terraform deployment
-    #   working-directory : "./terraform"
-    #   run: terraform plan 
+    # Plan the Terraform deployment
+    - name: Plan Terraform deployment
+      working-directory : "./terraform"
+      run: terraform plan 
 
-    # # Apply Terraform configuration
-    # - name: Apply Terraform deployment
-    #   working-directory : "./terraform"
-    #   run: terraform apply -auto-approve
+    # Apply Terraform configuration
+    - name: Apply Terraform deployment
+      working-directory : "./terraform"
+      run: terraform apply -auto-approve
