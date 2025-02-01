@@ -34,8 +34,8 @@ Optional - [GitHub Account](https://github.com/signup), [Docker Hub Account](htt
 Clone the project from GitHub Repository in your working directory:
 
 ```
-git clone https://github.com/NaveenKumar-Y/particle41_assessment.git
-cd particle41_assessment/app
+git clone https://github.com/NaveenKumar-Y/Dockerized-App-Azure-Infrastructure.git
+cd Dockerized-App-Azure-Infrastructure/app
 ```
 
 * * * * *
@@ -82,7 +82,7 @@ docker run naveenykumar/simpletimeservice:latest
 
 ### **Step 2: Add GitHub Actions Workflow**
 
-Create a [.github/workflows/build_publish_docker.yml](.github/workflows/build_publish_docker.yml) file or use the exisiting file in the repository and add the following workflow:
+ [.github/workflows/build_publish_docker.yml](.github/workflows/build_publish_docker.yml)  - use this exisiting file in the repository to trigger the Build process (make sure have some change in app/ folder):
 
 
 ```
@@ -91,7 +91,9 @@ name: Build and Push Docker Image
 on:
   push:
     branches:
-      - main 
+      - main
+    paths:
+      - 'app/**'
 
 jobs:
   build-and-push:
@@ -194,8 +196,9 @@ Deployment Steps (Local Machine)
 ### 1. Clone the Repository
 
 ```
-git clone https://github.com/NaveenKumar-Y/particle41_assessment.git
-cd particle41_assessment/terraform
+git clone https://github.com/NaveenKumar-Y/Dockerized-App-Azure-Infrastructure.git
+cd Dockerized-App-Azure-Infrastructure
+/terraform
 ```
 
 ### 2. Set Up Variables and credentials
@@ -252,7 +255,7 @@ This command provisions:
   
 The State of this deployment will be saved locally in .terraform directory.
 
-### 6️. Retrieve Load Balancer IP
+### 6. Retrieve Load Balancer IP
 
 Once the deployment is successful, retrieve the public LB IP or from the AKS cluster UI "**Services and ingresses**" tab:
 
@@ -262,7 +265,7 @@ kubectl get svc -n default
 
 Look for the `**EXTERNAL-IP**` of the LoadBalancer service.
 
-### 7️. Test the Application
+### 7. Test the Application
 
 Open your browser or use `curl` to access the service:
 
@@ -311,6 +314,7 @@ Automation via GitHub Actions & Terraform Cloud (TFC) (Optional)
 
 
 ### **Step 3: Push Code to Trigger the Workflow**
+- [build_terraform_azure_resources.yml](build_terraform_azure_resources.yml)  - use this exisiting file in the repository to trigger the Build process (make sure have some change in terraform/ folder):
 - Once the files are committed and pushed to the branch main in GitHub, GitHub Actions will run **terraform plan** and **terraform apply**.
 - From this setup we don't have to hard code sensitive values in our code, and secure our state file, and automate our Deployment.
   
