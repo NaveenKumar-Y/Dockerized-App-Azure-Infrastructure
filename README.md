@@ -319,7 +319,7 @@ Automation via GitHub Actions & Terraform Cloud (TFC) (Optional)
 - From this setup we don't have to hard code sensitive values in our code, and secure our state file, and automate our Deployment.
   
 
-Sample GitHub Action Run : [Link to Build Job run](https://github.com/NaveenKumar-Y/particle41_assessment/actions/runs/13088189096)
+Sample GitHub Action Run : [Link to Build Job run](https://github.com/NaveenKumar-Y/Dockerized-App-Azure-Infrastructure/actions/runs/13088189096/job/36521824479)
 
 Now, the service will be running and accessible at:\
 👉 **`http://<EXTERNAL-IP>:18630`**
