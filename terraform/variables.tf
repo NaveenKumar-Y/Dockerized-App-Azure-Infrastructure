@@ -59,19 +59,13 @@ variable "private_subnet_2_name" {
   type        = string
 }
 
-variable "private_subnet_service_endpoints" {
-  description = "Service endpoints for the private subnet"
-  type        = list(string)
-}
-
-##
 
 variable "aks_cluster_name" {
   description = "Name of the AKS cluster"
   type        = string
 }
 
-
+variable "aks_node_resource_group_name" {}
 
 variable "dns_prefix" {
   description = "DNS prefix for the AKS cluster"
@@ -88,14 +82,6 @@ variable "vm_size" {
   type        = string
 }
 
-variable "load_balancer_name" {
-  description = "Name of the load balancer"
-  type        = string
-}
-
-# variable "public_subnet_id" {
-#   description = "public subnet"
-# }
 
 variable "kubernetes_version" {
 }

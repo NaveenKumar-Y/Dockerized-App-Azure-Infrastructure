@@ -16,3 +16,5 @@ variable "resource_group_name" {
 variable "public_subnet_id" {
   description = "public subnet id"
 }
+
+variable "load_balancer_ip" {}

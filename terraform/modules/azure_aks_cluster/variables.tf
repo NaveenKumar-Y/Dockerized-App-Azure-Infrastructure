@@ -33,11 +33,8 @@ variable "subnet_id" {
   type        = string
 }
 
-# variable "bcp_id" {}
-
-variable "load_balancer_ip" {
-  description = " LoadBalancer will get created with the IP specified in this field"
-}
 
 variable "kubernetes_version" {
 }
+
+variable "aks_node_resource_group_name" {}

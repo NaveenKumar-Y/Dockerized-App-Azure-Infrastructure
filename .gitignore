@@ -5,7 +5,6 @@
 .terraform.lock.hcl
 
 # Terraform variables and secrets (DO NOT COMMIT)
-terraform.tfvars
 *.tfvars.json
 terraform.tfvars.backup
 

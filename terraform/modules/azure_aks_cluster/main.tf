@@ -12,12 +12,12 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
     vnet_subnet_id = var.subnet_id
   }
 
-    network_profile {
-    network_plugin    = "azure"  
-    service_cidr      = "10.1.0.0/16"  
-    dns_service_ip    = "10.1.0.10"    
+  network_profile {
+    network_plugin = "azure"
+    service_cidr   = "10.1.0.0/16"
+    dns_service_ip = "10.1.0.10"
     # pod_cidr          = "10.2.0.0/16" 
-    }
+  }
 
   identity {
     type = "SystemAssigned"
@@ -49,7 +49,7 @@ resource "kubernetes_deployment" "container_deployment" {
       spec {
         container {
           name  = "app-container"
-          image = "nginx" #"naveenykumar/simpletimeservice:latest"
+          image = "naveenykumar/simpletimeservice:latest"
           port {
             container_port = 18630
           }
@@ -76,8 +76,6 @@ resource "kubernetes_service" "container_service" {
       protocol    = "TCP"
     }
     type = "LoadBalancer"
-    # load_balancer_backend_address_pool_id = var.bcp_id
-    load_balancer_ip = var.load_balancer_ip
   }
 }
 

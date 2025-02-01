@@ -61,7 +61,3 @@ variable "private_subnet_2_prefixes" {
   type        = list(string)
 }
 
-variable "private_subnet_service_endpoints" {
-  description = "Service endpoints for the private subnet"
-  type        = list(string)
-}
