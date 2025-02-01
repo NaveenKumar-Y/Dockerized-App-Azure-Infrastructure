@@ -99,3 +99,5 @@ variable "load_balancer_name" {
 
 variable "kubernetes_version" {
 }
+
+variable "aks_node_resource_group_name" {}
