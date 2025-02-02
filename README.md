@@ -182,12 +182,6 @@ az account set --subscription <your-subscription-id>
 ```
 Create a subscription if not created already and fetch the **\<your-subscription-id\>** from the subscription UI. <br>
 
-If you haven't already created a **Service Principal (SPN)** for Terraform, create one using:
-
-```
-az ad sp create-for-rbac --name "Terraform-actions-SPN" --role="Contributor" --scopes="/subscriptions/<your-subscription-id>"
-```
-Copy the output of the SPN creation and use it for authentication(**store the credentials securely**), we have to use this credentials in deployment steps.
 
 
 Deployment Steps (Local Machine)
@@ -203,7 +197,7 @@ If you already cloned the repo in [Task 1](#Task-1---SimpleTimeService-Deploymen
 
 ### 2. Set Up Variables and credentials
 
-Use default values or customize the [`terraform.tfvars`](/terraform/terraform.tfvars) file with your values:
+Use default values or Optional - customize the [`terraform.tfvars`](/terraform/terraform.tfvars) file with your values(make sure to use valid inputs):
 
 ```
 location            = "East US"
@@ -211,17 +205,7 @@ resource_group_name = "naveen-resource-group"
 vnet_name           = "naveen-vnet"
 ...
 ```
-Replace the credentials values in [`main.tf`](./terraform/main.tf) under the `azurerm` provider block with the respective values of credentials:
 
-```
-provider "azurerm" {
-  subscription_id = <subscription_id>
-  tenant_id       = <tenant_id>
-  client_id       = <client_id>
-  client_secret   = <client_secret>
-  features {}
-}
-```
 
 ###  3. Initialize Terraform
 
@@ -262,6 +246,11 @@ Once the deployment is successful, retrieve the public LB IP or from the AKS clu
 ```
 kubectl get svc -n default
 ```
+-   If `kubectl` commands fail, fetch credentials using:
+
+    ```
+    az aks get-credentials --resource-group naveen-resource-group --name naveen-aks-cluster
+    ```
 
 Look for the `**EXTERNAL-IP**` of the LoadBalancer service.
 
@@ -287,13 +276,11 @@ terraform destroy -auto-approve
 Troubleshooting
 ---------------
 
--   If Terraform Command fails, check if Environment Variable is set for $PATH in your system - [guide](https://jeffbrown.tech/install-terraform-windows/)
+-   If Terraform Command fails, check if Environment Variable is set for $PATH in your system or reopen the terminal if already $PATH is set- [guide](https://jeffbrown.tech/install-terraform-windows/)
+-   If "`az login`" doesn't work, use the SPN for authentication, follow the step `Step 2: Configure Workspace` in below automation section.
 
--   If `kubectl` commands fail, fetch credentials using:
-
-    ```
-    az aks get-credentials --resource-group naveen-resource-group --name naveen-aks-cluster
-    ```
+- If `terraform apply` fails for a **Deployment** or **Service**, wait for AKS to fully initialize, check the AKS UI for namespace accessibility, and verify readiness using `kubectl cluster-info` before re-running `terraform apply`. This scenario is rare but can occur due to Azure resource provisioning delays or network slowness.
+- if the Service endpoint is not accessible via a browser, check for firewall restrictions or use  `curl` to access the service from Azure Cloud Shell.
 
 
 
@@ -307,9 +294,26 @@ Automation via GitHub Actions & Terraform Cloud (TFC) (Optional)
 3.  In GitHub repository, navigate to **Settings** → **Secrets and variables** → **Actions**.
 4.  Click **New repository secret** and add:
     -   **`TFC_TOKEN`** → TFC access token
+   
 ### **Step 2: Configure Workspace**
-- Store Azure credentials (client_id, client_secret, subscription_id, tenant_id) as **TFC Secret Variables**
-- Uncomment [`provider-variables.tf`](/terraform/provider-variables.tf) file.
+- If you haven't already created a **Service Principal (SPN)** for Terraform, create one using:
+
+  ```
+  az ad sp create-for-rbac --name "Terraform-actions-SPN" --role="Contributor" --scopes="/subscriptions/<your-subscription-id>"
+  ```
+- Substitute Azure credential values of SPN (client_id, client_secret, subscription_id, tenant_id) as **TFC Secret Variables**
+- Uncommnent the following provider block in [`main.tf`](./terraform/main.tf) which uses TFC secrets to authenticate.
+
+  ```
+  provider "azurerm" {
+    subscription_id = var.subscription_id
+    tenant_id       = var.tenant_id
+    client_id       = var.client_id
+    client_secret   = var.client_secret
+    features {
+    }
+  }
+  ```
 - Uncomment and update the [`backend.tf`](./terraform/backend.tf) file with your **workspace name**.
 
 
