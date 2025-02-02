@@ -57,10 +57,10 @@ docker pull naveenykumar/simpletimeservice:latest
 ### **Step 2: Run the Container**
 
 ```
-docker run naveenykumar/simpletimeservice:latest
+docker run -p 18630:18630 naveenykumar/simpletimeservice:latest
 ```
 
--  Click on the service endpoints in the output of Docker run command or  service will be available at **`http://<your-ip>:18630`** or **`http://localhost:18630`**. 
+-  Click on the service endpoints in the output of Docker run command or  service will be available at **`http://localhost:18630`** or **`http://127.0.0.1:18630`**. 
 <br>
 <br>
 _Preview:_
