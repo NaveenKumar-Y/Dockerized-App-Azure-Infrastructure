@@ -174,7 +174,7 @@ Before running the Terraform deployment, ensure you have the following installed
 Authentication
 --------------
 
-Before running Terraform, authenticate to Azure using (skip Authentication section if you already have SPN credentials):
+Before running Terraform, authenticate to Azure using:
 
 ```
 az login
