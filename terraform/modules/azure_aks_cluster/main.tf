@@ -1,3 +1,4 @@
+# create aks cluster
 resource "azurerm_kubernetes_cluster" "aks_cluster" {
   name                = var.aks_cluster_name
   location            = var.location
@@ -26,7 +27,7 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
 
 }
 
-
+# Create a kubernetes deployment for hosting the app.
 resource "kubernetes_deployment" "container_deployment" {
   depends_on = [azurerm_kubernetes_cluster.aks_cluster]
   metadata {
@@ -60,6 +61,8 @@ resource "kubernetes_deployment" "container_deployment" {
   }
 }
 
+
+# Create kubernetes service for exposing the app.
 resource "kubernetes_service" "container_service" {
   depends_on = [kubernetes_deployment.container_deployment]
   metadata {

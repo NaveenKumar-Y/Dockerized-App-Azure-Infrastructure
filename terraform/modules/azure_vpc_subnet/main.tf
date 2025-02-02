@@ -1,4 +1,4 @@
-
+# create vnet
 resource "azurerm_virtual_network" "vnet" {
   name                = var.vnet_name
   location            = var.location
@@ -6,6 +6,7 @@ resource "azurerm_virtual_network" "vnet" {
   address_space       = var.address_space
 }
 
+#create subnets
 resource "azurerm_subnet" "public_subnet_1" {
   depends_on           = [azurerm_virtual_network.vnet]
   name                 = var.public_subnet_1_name
