@@ -290,9 +290,9 @@ Automation via GitHub Actions & Terraform Cloud (TFC) (Optional)
 ### **Step 1: Configure Terraform Cloud**
 
 1.  Create and go to your Terraform Account.
-2.  Create project, workspace and Token.
+2.  Create project, workspace and `token`.
 3.  In GitHub repository, navigate to **Settings** → **Secrets and variables** → **Actions**.
-4.  Click **New repository secret** and add the token:
+4.  Click **New repository secret** and add the `token`:
     -   **`TFC_TOKEN`** → TFC access token
    
 ### **Step 2: Configure Workspace**
