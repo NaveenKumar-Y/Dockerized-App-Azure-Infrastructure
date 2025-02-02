@@ -60,7 +60,7 @@ docker pull naveenykumar/simpletimeservice:latest
 docker run -p 18630:18630 naveenykumar/simpletimeservice:latest
 ```
 
--  Click on the service endpoints in the output of Docker run command or  service will be available at **`http://localhost:18630`** or **`http://127.0.0.1:18630`**. 
+-  Click on the service endpoints in the output of Docker run command or  service will be available at **`http://localhost:18630`** or **`http://127.0.0.1:18630`**
 <br>
 <br>
 _Preview:_
@@ -174,7 +174,7 @@ Before running the Terraform deployment, ensure you have the following installed
 Authentication
 --------------
 
-Before running Terraform, authenticate to Azure using:
+Before running Terraform, authenticate to Azure using (skip Authentication section if you already have SPN credentials):
 
 ```
 az login
@@ -197,9 +197,9 @@ Deployment Steps (Local Machine)
 
 ```
 git clone https://github.com/NaveenKumar-Y/Dockerized-App-Azure-Infrastructure.git
-cd Dockerized-App-Azure-Infrastructure
-/terraform
+cd Dockerized-App-Azure-Infrastructure/terraform
 ```
+If you already cloned the repo in [Task 1](#Task-1---SimpleTimeService-Deployment-App-Guide), just change directory to "[/terraform](/terraform/)"
 
 ### 2. Set Up Variables and credentials
 
@@ -314,6 +314,7 @@ Automation via GitHub Actions & Terraform Cloud (TFC) (Optional)
 
 
 ### **Step 3: Push Code to Trigger the Workflow**
+
 - [build_terraform_azure_resources.yml](.github/workflows/build_terraform_azure_resources.yml)  - use this exisiting file in the repository to trigger the Build process (make sure have some change in terraform/ folder):
 - Once the files are committed and pushed to the branch main in GitHub, GitHub Actions will run **terraform plan** and **terraform apply**.
 - From this setup we don't have to hard code sensitive values in our code, and secure our state file, and automate our Deployment.
