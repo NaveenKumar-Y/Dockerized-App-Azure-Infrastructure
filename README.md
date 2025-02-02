@@ -137,7 +137,7 @@ After the image is published, anyone can deploy the container without building i
 
 ```
 docker pull naveenykumar/simpletimeservice:latest
-docker naveenykumar/simpletimeservice
+docker run naveenykumar/simpletimeservice
 ```
 
 Now, the service will be running and accessible at:\
