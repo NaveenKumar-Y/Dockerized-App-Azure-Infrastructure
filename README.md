@@ -279,7 +279,7 @@ Troubleshooting
 -   If Terraform Command fails, check if Environment Variable is set for $PATH in your system or reopen the terminal if already $PATH is set- [guide](https://jeffbrown.tech/install-terraform-windows/)
 -   If "`az login`" doesn't work, use the SPN for authentication, follow the step `Step 2: Configure Workspace` in below automation section.
 
-- If `terraform apply` fails for a **Deployment** or **Service**, wait for AKS to fully initialize, check the AKS UI for namespace accessibility, and verify readiness using `kubectl cluster-info` before re-running `terraform apply`. This scenario is rare but can occur due to Azure resource provisioning delays or network slowness.
+- If `terraform apply` fails for a **Deployment** or **Service** showing DNS issues, wait for AKS to fully initialize, check the AKS UI for namespace accessibility, and verify readiness using `kubectl cluster-info` before re-running `terraform apply`. This scenario is rare but can occur due to Azure resource provisioning delays or network slowness.
 - if the Service endpoint is not accessible via a browser, check for firewall restrictions or use  `curl` to access the service from Azure Cloud Shell.
 
 
@@ -292,7 +292,7 @@ Automation via GitHub Actions & Terraform Cloud (TFC) (Optional)
 1.  Create and go to your Terraform Account.
 2.  Create project, workspace and Token.
 3.  In GitHub repository, navigate to **Settings** → **Secrets and variables** → **Actions**.
-4.  Click **New repository secret** and add:
+4.  Click **New repository secret** and add the token:
     -   **`TFC_TOKEN`** → TFC access token
    
 ### **Step 2: Configure Workspace**
@@ -301,7 +301,7 @@ Automation via GitHub Actions & Terraform Cloud (TFC) (Optional)
   ```
   az ad sp create-for-rbac --name "Terraform-actions-SPN" --role="Contributor" --scopes="/subscriptions/<your-subscription-id>"
   ```
-- Substitute Azure credential values of SPN (client_id, client_secret, subscription_id, tenant_id) as **TFC Secret Variables**
+- Substitute Azure credential values of SPN (client_id, client_secret, subscription_id, tenant_id) as **TFC Secret Variables** in Terraform Cloud Workspace variables as sensitive.
 - Uncommnent the following provider block in [`main.tf`](./terraform/main.tf) which uses TFC secrets to authenticate.
 
   ```
