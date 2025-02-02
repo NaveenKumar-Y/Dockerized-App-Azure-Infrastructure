@@ -116,7 +116,7 @@ jobs:
         run: docker push naveenykumar/simpletimeservice:latest
 
 ```
-NOTE : Make sure to have on_push 
+**NOTE** : Make sure to commit only `app/` to avoid triggering other workflows.
 
 ### **Step 3: Push Code to Trigger the Workflow**
 
